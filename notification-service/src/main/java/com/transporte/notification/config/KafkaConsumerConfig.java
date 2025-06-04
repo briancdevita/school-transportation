@@ -1,5 +1,6 @@
 package com.transporte.notification.config;
 
+import com.transporte.notification.model.BusLocationUpdateEvent;
 import com.transporte.notification.model.StudentCreateEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -39,4 +40,27 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
+
+
+    @Bean(name = "busLocationKafkaListenerContainerFactory")
+    public ConcurrentKafkaListenerContainerFactory<String, BusLocationUpdateEvent> busLocationKafkaListenerContainerFactory() {
+    JsonDeserializer<BusLocationUpdateEvent> deserializer = new JsonDeserializer<>(BusLocationUpdateEvent.class);
+    deserializer.setRemoveTypeHeaders(false);
+    deserializer.addTrustedPackages("*");
+    deserializer.setUseTypeMapperForKey(true);
+    Map<String, Object> config = new HashMap<>();
+
+    config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    config.put(ConsumerConfig.GROUP_ID_CONFIG, "notification-group");
+    config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+    config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+
+    ConsumerFactory<String, BusLocationUpdateEvent> factory =
+        new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), deserializer);
+
+    ConcurrentKafkaListenerContainerFactory<String, BusLocationUpdateEvent> containerFactory =
+        new ConcurrentKafkaListenerContainerFactory<>();
+    containerFactory.setConsumerFactory(factory);
+    return containerFactory;
+}
 }
