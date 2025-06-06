@@ -14,8 +14,7 @@ public class BusLocationConsumer {
         containerFactory = "busLocationKafkaListenerContainerFactory"
     )
     public void consume(BusLocationUpdateEvent busLocationUpdateEvent) {
-        // Here you can add logic to handle the event, like sending a notification
-        // For example, sending an email or logging the event
+      
         System.out.println("🚌 Actualización de ubicación del autobús: " + busLocationUpdateEvent.getBusId() + 
                            " - Nueva ubicación: " + busLocationUpdateEvent.getLatitude() + ", " + busLocationUpdateEvent.getLongitude() +
                            " - Hora: " + busLocationUpdateEvent.getTimestamp());
