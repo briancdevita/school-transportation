@@ -1,5 +1,6 @@
 package com.transporte.student.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,6 +17,15 @@ public class Student {
 
 
     private String firstName;
+    private Long routeId;
+    public Long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
+
     private String lastName;
     private String address;
     private String assignedStop;
@@ -31,45 +41,48 @@ public class Student {
         this.assignedStop = assignedStop;
     }
 
+
+    
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+public void setId(Long id) {
+    this.id = id;
+}
 
-    public String getFirstName() {
-        return firstName;
-    }
+public String getFirstName() {
+    return firstName;
+}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+public void setFirstName(String firstName) {
+    this.firstName = firstName;
+}
 
-    public String getLastName() {
-        return lastName;
-    }
+public String getLastName() {
+    return lastName;
+}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+public void setLastName(String lastName) {
+    this.lastName = lastName;
+}
 
-    public String getAddress() {
-        return address;
-    }
+public String getAddress() {
+    return address;
+}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+public void setAddress(String address) {
+    this.address = address;
+}
 
-    public String getAssignedStop() {
-        return assignedStop;
-    }
+public String getAssignedStop() {
+    return assignedStop;
+}
 
-    public void setAssignedStop(String assignedStop) {
-        this.assignedStop = assignedStop;
-    }
+public void setAssignedStop(String assignedStop) {
+    this.assignedStop = assignedStop;
+}
 
     
 }

@@ -1,45 +1,72 @@
 package com.stop_service.stop_service.model;
 
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Stop {
+
     @Id
-    @GeneratedValue( strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private double latitude;
+    private double longitude;
+    private Long routeId;
 
-    private String location;
-    private String time;
 
+
+    public Stop(Long routeId) {
+        this.routeId = routeId;
+    }
+
+    public Stop() {
+
+    }
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getLocation() {
-        return location;
-    }
-    public void setLocation(String location) {
-        this.location = location;
-    }
-    public String getTime() {
-        return time;
-    }
-    public void setTime(String time) {
-        this.time = time;
+
+    public String getName() {
+        return name;
     }
 
-    public Stop() {
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Stop(Long id, String location, String time) {
-        this.id = id;
-        this.location = location;
-        this.time = time;
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+
+    public Long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
     }
 }

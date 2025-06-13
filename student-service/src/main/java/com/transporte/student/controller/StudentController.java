@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,15 @@ import com.transporte.student.event.StudentCreatedEvent;
 import com.transporte.student.model.Student;
 import com.transporte.student.service.StudentService;
 
+
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
 
     @Autowired
     private KafkaTemplate<String, StudentCreatedEvent> kafkaTemplate;
+    
+
 
     private final StudentService studentService;
     public StudentController(StudentService studentService) {
@@ -41,6 +45,13 @@ public class StudentController {
     public List<Student> getAll() {
         return studentService.getAll();
     }
+
+    @GetMapping("/by-route/{routeId}")
+    public List<Student> getStudentsByRoute(@PathVariable Long routeId) {
+        System.out.println("Fetching students for route ID: " + routeId);
+        return studentService.getStudentsByRouteId(routeId);
+    }
+    
 
     
 }

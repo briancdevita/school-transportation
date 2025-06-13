@@ -33,7 +33,6 @@ public class RouteController {
 
     @PostMapping()
     public Route create (@RequestBody Route route) {
-      
         return routeService.save(route);
     }
     

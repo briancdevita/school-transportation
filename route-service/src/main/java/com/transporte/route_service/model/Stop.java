@@ -35,4 +35,45 @@ public class Stop {
     @JoinColumn(name = "route_id")
     private Route route;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEstimaedHours() {
+        return estimaedHours;
+    }
+
+    public void setEstimaedHours(String estimaedHours) {
+        this.estimaedHours = estimaedHours;
+    }
+
+    public Route getRoute() {
+        return route;
+    }
+
+    public void setRoute(Route route) {
+        this.route = route;
+    }
+
 }
